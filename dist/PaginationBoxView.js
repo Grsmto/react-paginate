@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -81,13 +85,7 @@ var PaginationBoxView = function (_Component) {
       if (_this.props.pageCount <= _this.props.pageRangeDisplayed) {
 
         for (var index = 0; index < _this.props.pageCount; index++) {
-          items['key' + index] = _react2.default.createElement(_PageView2.default, {
-            onClick: _this.handlePageSelected.bind(null, index),
-            selected: _this.state.selected === index,
-            pageClassName: _this.props.pageClassName,
-            pageLinkClassName: _this.props.pageLinkClassName,
-            activeClassName: _this.props.activeClassName,
-            page: index + 1 });
+          items['key' + index] = _this.getPageElement(index);
         }
       } else {
 
@@ -183,6 +181,7 @@ var PaginationBoxView = function (_Component) {
         pageClassName: this.props.pageClassName,
         pageLinkClassName: this.props.pageLinkClassName,
         activeClassName: this.props.activeClassName,
+        extraAriaContext: this.props.extraAriaContext,
         href: this.hrefBuilder(index),
         page: index + 1 });
     }
@@ -233,27 +232,27 @@ var PaginationBoxView = function (_Component) {
 }(_react.Component);
 
 PaginationBoxView.propTypes = {
-  pageCount: _react.PropTypes.number.isRequired,
-  pageRangeDisplayed: _react.PropTypes.number.isRequired,
-  marginPagesDisplayed: _react.PropTypes.number.isRequired,
-  previousLabel: _react.PropTypes.node,
-  nextLabel: _react.PropTypes.node,
-  breakLabel: _react.PropTypes.node,
-  hrefBuilder: _react.PropTypes.func,
-  onPageChange: _react.PropTypes.func,
-  initialPage: _react.PropTypes.number,
-  forcePage: _react.PropTypes.number,
-  disableInitialCallback: _react.PropTypes.bool,
-  containerClassName: _react.PropTypes.string,
-  pageClassName: _react.PropTypes.string,
-  pageLinkClassName: _react.PropTypes.string,
-  activeClassName: _react.PropTypes.string,
-  previousClassName: _react.PropTypes.string,
-  nextClassName: _react.PropTypes.string,
-  previousLinkClassName: _react.PropTypes.string,
-  nextLinkClassName: _react.PropTypes.string,
-  disabledClassName: _react.PropTypes.string,
-  breakClassName: _react.PropTypes.string
+  pageCount: _propTypes2.default.number.isRequired,
+  pageRangeDisplayed: _propTypes2.default.number.isRequired,
+  marginPagesDisplayed: _propTypes2.default.number.isRequired,
+  previousLabel: _propTypes2.default.node,
+  nextLabel: _propTypes2.default.node,
+  breakLabel: _propTypes2.default.node,
+  hrefBuilder: _propTypes2.default.func,
+  onPageChange: _propTypes2.default.func,
+  initialPage: _propTypes2.default.number,
+  forcePage: _propTypes2.default.number,
+  disableInitialCallback: _propTypes2.default.bool,
+  containerClassName: _propTypes2.default.string,
+  pageClassName: _propTypes2.default.string,
+  pageLinkClassName: _propTypes2.default.string,
+  activeClassName: _propTypes2.default.string,
+  previousClassName: _propTypes2.default.string,
+  nextClassName: _propTypes2.default.string,
+  previousLinkClassName: _propTypes2.default.string,
+  nextLinkClassName: _propTypes2.default.string,
+  disabledClassName: _propTypes2.default.string,
+  breakClassName: _propTypes2.default.string
 };
 PaginationBoxView.defaultProps = {
   pageCount: 10,

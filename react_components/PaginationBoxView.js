@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import createFragment from 'react-addons-create-fragment';
@@ -119,6 +120,7 @@ export default class PaginationBoxView extends Component {
       pageClassName={this.props.pageClassName}
       pageLinkClassName={this.props.pageLinkClassName}
       activeClassName={this.props.activeClassName}
+      extraAriaContext={this.props.extraAriaContext}
       href={this.hrefBuilder(index)}
       page={index + 1} />
   }
@@ -129,13 +131,7 @@ export default class PaginationBoxView extends Component {
     if (this.props.pageCount <= this.props.pageRangeDisplayed) {
 
       for (let index = 0; index < this.props.pageCount; index++) {
-        items['key' + index] = <PageView
-          onClick={this.handlePageSelected.bind(null, index)}
-          selected={this.state.selected === index}
-          pageClassName={this.props.pageClassName}
-          pageLinkClassName={this.props.pageLinkClassName}
-          activeClassName={this.props.activeClassName}
-          page={index + 1} />
+        items['key' + index] = this.getPageElement(index);
       }
 
     } else {
